@@ -1,10 +1,7 @@
 import os
 import shutil
 
-# Diretório de Downloads
-downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
-
-# Crie uma função para organizar os arquivos
+# Função para organizar os arquivos em uma pasta
 def organize_files_by_type(folder_path):
     # Verifica se o diretório existe
     if not os.path.exists(folder_path):
@@ -25,12 +22,10 @@ def organize_files_by_type(folder_path):
         "pptx": "apresentações",
         "mp4": "vídeos",
         "mp3": "áudios",
-        "jfif": "imagens",
-        "txt" : "bloco_de_notas"
         # Adicione mais extensões conforme necessário
     }
 
-    # Percorre todos os arquivos na pasta Downloads
+    # Percorre todos os arquivos na pasta
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
 
@@ -54,5 +49,15 @@ def organize_files_by_type(folder_path):
         else:
             print(f"Extensão não reconhecida: {filename}")
 
-# Executa a função para organizar os arquivos na pasta Downloads
+# Diretório de Downloads
+downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
+# Diretório de Documentos
+documents_folder = os.path.join(os.path.expanduser("~"), "Documents")
+
+# Organiza os arquivos em ambos os diretórios
+print("Organizando a pasta Downloads...")
 organize_files_by_type(downloads_folder)
+
+print("Organizando a pasta Documentos...")
+organize_files_by_type(documents_folder)
+
