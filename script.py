@@ -1,6 +1,15 @@
 import os
 import shutil
 
+# Nome do bot
+bot_name = "FileTidyBot"
+
+# Função para mostrar o nome estilizado do bot
+def display_welcome_message():
+    print("*" * 40)
+    print(f"**{'Welcome to ' + bot_name:^36}**")
+    print("*" * 40)
+
 # Função para organizar os arquivos em uma pasta
 def organize_files_by_type(folder_path):
     # Verifica se o diretório existe
@@ -25,6 +34,8 @@ def organize_files_by_type(folder_path):
         # Adicione mais extensões conforme necessário
     }
 
+    print(f"\nOrganizando arquivos na pasta: {folder_path}\n" + "-" * 40)
+
     # Percorre todos os arquivos na pasta
     for filename in os.listdir(folder_path):
         file_path = os.path.join(folder_path, filename)
@@ -45,9 +56,16 @@ def organize_files_by_type(folder_path):
 
             # Move o arquivo para a pasta correta
             shutil.move(file_path, os.path.join(destination_folder, filename))
-            print(f'Movido: {filename} -> {destination_folder}')
+            print(f'[✔] Movido: {filename} -> {destination_folder}')
         else:
-            print(f"Extensão não reconhecida: {filename}")
+            print(f"[✘] Extensão não reconhecida: {filename}")
+
+    print("\n" + "-" * 40)
+    print(f"** Organização completa em: {folder_path} **")
+    print("-" * 40)
+
+# Exibe a mensagem de boas-vindas
+display_welcome_message()
 
 # Diretório de Downloads
 downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
@@ -55,9 +73,7 @@ downloads_folder = os.path.join(os.path.expanduser("~"), "Downloads")
 documents_folder = os.path.join(os.path.expanduser("~"), "Documents")
 
 # Organiza os arquivos em ambos os diretórios
-print("Organizando a pasta Downloads...")
 organize_files_by_type(downloads_folder)
-
-print("Organizando a pasta Documentos...")
 organize_files_by_type(documents_folder)
 
+print(f"\nObrigado por usar o {bot_name} para organizar seus arquivos!\n")
